@@ -1,13 +1,30 @@
 <head>
 <title>AR.js A-Frame Location-based</title>
 <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-<script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex-location-only.js'></script>
-<script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js'></script>
+<!--script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex-location-only.js'></script>
+<script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js'></script-->
 </head>
 <body>
-<a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
+  <!--a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
     <a-camera gps-new-camera='gpsMinDistance: 5'></a-camera>
     <a-entity material='color: red' geometry='primitive: box' gps-new-entity-place="latitude: 24.103257; longitude: -110.315786" scale="10 10 10"></a-entity>
     <a-entity material='color: green' geometry='primitive: box' gps-new-entity-place="latitude: 24.102479848945663; longitude: -110.31630335795987" scale="10 10 10"></a-entity>
-</a-scene>
+</a-scene-->
+  <a-scene
+    vr-mode-ui="enabled: false;"
+    render="logarithmicDepthBuffer: true;"
+    embedded 
+    arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3"
+    <a-marker markerhandler type="barcode" value="7">
+      <a-box position='0 0.5 0' color="blue"></a-box>
+    </a-marker>
+  >
+  </a-scene>
+  <script>
+    AFRAME.registerComponent('markerhandler', () => {
+      this.el.sceneEl.addEventListener('markerFound', () =>{
+        alert('Hola mundo');
+      })
+    })
+  </script>
 </body>
